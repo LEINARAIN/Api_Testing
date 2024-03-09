@@ -28,26 +28,18 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
+
         responseLiveData.observe(this, Observer { response ->
             val shoeItem = response.body()
             shoeItem?.let {
                 val shoeList = it.shoes
-
-                val selectedIndex = 0
-
-                if (shoeList.isNotEmpty() && selectedIndex < shoeList.size) {
-                    val selectedShoe = shoeList[selectedIndex]
-
-                    val shoeName = "Shoe Name: ${selectedShoe.name} \n"
-                    binding.titleTextView.text = shoeName
-                    // copy, paste, and modify the two code of lines above if you want to display other attributes like, price. Refer to the ShoeItem.kt for the naming)
+                for (shoeItem in shoeList) {
+                    val shoeName = "Shoe Name: ${shoeItem.name} \n"
+                    binding.titleTextView.append(shoeName)
+                }
             }
-        }
-        //fetching
-        val url: String = "https://sneakersphere.online/frontendimg/img/jordan1.png"
-        val imageView : ImageView = findViewById (R.id.imageView)
-        Glide.with(this).load(url).into(imageView)
-    })
-}}
+        })
+    }
+}
 
 
