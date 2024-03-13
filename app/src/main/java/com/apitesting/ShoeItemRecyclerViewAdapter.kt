@@ -1,15 +1,18 @@
 package com.apitesting
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.apitesting.ShoeItem
 import com.bumptech.glide.Glide
 
-class ShoeItemRecyclerViewAdapter(private var shoeList: List<Shoe>) :
+class ShoeItemRecyclerViewAdapter(
+    private var shoeList: List<Shoe>,
+    private val onItemClick: (shoe: Shoe, imageUrl: String) -> Unit
+) :
     RecyclerView.Adapter<ShoeItemRecyclerViewAdapter.ViewHolder>() {
 
     companion object {
@@ -23,8 +26,16 @@ class ShoeItemRecyclerViewAdapter(private var shoeList: List<Shoe>) :
             ShoeImage(7, "https://www.sneakersphere.online/images/7.png"),
             ShoeImage(8, "https://www.sneakersphere.online/images/8.png"),
             ShoeImage(9, "https://www.sneakersphere.online/images/9.png"),
-            ShoeImage(10, "https://www.sneakersphere.online/images/10.png")
+            ShoeImage(10, "https://www.sneakersphere.online/images/10.png"),
+            ShoeImage(11, "https://www.sneakersphere.online/images/11.png"),
+            ShoeImage(12, "https://www.sneakersphere.online/images/12.png")
         )
+    }
+
+    fun getShoeImageUrl(shoeId: Int): String {
+        // Access shoeImages using the companion object
+        val shoeImage = shoeImages.find { it.shoeId == shoeId }
+        return shoeImage?.imageUrls ?: ""
     }
 
     fun setData(newShoeList: List<Shoe>) {
@@ -32,33 +43,26 @@ class ShoeItemRecyclerViewAdapter(private var shoeList: List<Shoe>) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productImageView: ImageView = itemView.findViewById(R.id.productImageView)
         val productNameTextView: TextView = itemView.findViewById(R.id.productNameTextView)
         val productPriceTextView: TextView = itemView.findViewById(R.id.productPriceTextView)
 
-        fun bind(shoeItem: Shoe, shoeImages: List<ShoeImage>) {
+        fun bind(shoeItem: Shoe) {
             productNameTextView.text = "Product Name: ${shoeItem.name}"
             productPriceTextView.text = "Product Price: ${shoeItem.price}"
 
-            val shoeImage = shoeImages.find { it.shoeId == shoeItem.id }
+            val shoeImageUrl = getShoeImageUrl(shoeItem.id)
 
-            // Load image using Glide if a matching ShoeImage is found
-            if (shoeImage != null) {
-                Glide.with(itemView.context)
-                    .load(shoeImage.imageUrls)
-                    .placeholder(R.drawable.placeholder_image) // Placeholder image while loading
-                    .error(R.drawable.baseline_error_outline_24) // Error image if loading fails
-                    .into(productImageView)
-            } else {
-                // Handle case where no matching ShoeImage is found
-                // You can set a default image or take another action here
-                Glide.with(itemView.context)
-                    .load(R.drawable.baseline_error_outline_24)
-                    .placeholder(R.drawable.placeholder_image) // Placeholder image while loading
-                    .error(R.drawable.baseline_error_outline_24) // Error image if loading fails
-                    .into(productImageView)
-            }
+            // Load image using Glide
+            Glide.with(itemView.context)
+                .load(shoeImageUrl)
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.baseline_error_outline_24)
+                .into(productImageView)
+
+            // Set click listener
+            itemView.setOnClickListener { onItemClick(shoeItem, shoeImageUrl) }
         }
     }
 
@@ -69,7 +73,8 @@ class ShoeItemRecyclerViewAdapter(private var shoeList: List<Shoe>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val shoeItem = shoeList[position]
-        holder.bind(shoeItem, shoeImages)
+        holder.bind(shoeItem)
+        holder.itemView.setOnClickListener { onItemClick(shoeItem, getShoeImageUrl(shoeItem.id)) }
     }
 
     override fun getItemCount(): Int {

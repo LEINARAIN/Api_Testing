@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface ShoeService {
 
-    @GET("public/api")
+    @GET("api/shoes")
     suspend fun getShoeItem(): Response<ShoeItem>
 
 }

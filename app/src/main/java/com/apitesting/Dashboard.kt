@@ -1,11 +1,12 @@
 package com.apitesting
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apitesting.databinding.ActivityDashboardBinding
 import retrofit2.Response
@@ -16,14 +17,24 @@ class Dashboard : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDashboardBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_dashboard)
+        //super.onCreate(savedInstanceState)
+        //binding = ActivityDashboardBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
 
         val recyclerView: RecyclerView = findViewById(R.id.productRecyclerView)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        val adapter = ShoeItemRecyclerViewAdapter(emptyList()) // Initialize adapter with empty list
+        val adapter = ShoeItemRecyclerViewAdapter(emptyList()) { shoe, imageUrl ->
+            val intent = Intent(this, ShoeItemDetails::class.java)
+            intent.putExtra("SHOE_NAME", shoe.name)
+            intent.putExtra("SHOE_PRICE", shoe.price)
+            intent.putExtra("SHOE_DESCRIPTION", shoe.description)
+            intent.putExtra("SHOE_IMAGE_URL", imageUrl)
+            startActivity(intent)
+        }
+        // Initialize adapter with empty list
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
 
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
 
@@ -37,7 +48,7 @@ class Dashboard : AppCompatActivity() {
             val shoeItem = response.body()
             shoeItem?.let {
                 val shoeList = it.shoes
-                adapter.setData(shoeList)
+                adapter.setData(shoeList) // Update adapter data with the fetched list
             }
         })
     }
