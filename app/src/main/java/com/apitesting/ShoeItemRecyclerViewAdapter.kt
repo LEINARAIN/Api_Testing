@@ -49,8 +49,8 @@ class ShoeItemRecyclerViewAdapter(
         val productPriceTextView: TextView = itemView.findViewById(R.id.productPriceTextView)
 
         fun bind(shoeItem: Shoe) {
-            productNameTextView.text = "Product Name: ${shoeItem.name}"
-            productPriceTextView.text = "Product Price: ${shoeItem.price}"
+            productNameTextView.text = "${shoeItem.name}"
+            productPriceTextView.text = "PHP ${shoeItem.price}"
 
             val shoeImageUrl = getShoeImageUrl(shoeItem.id)
 

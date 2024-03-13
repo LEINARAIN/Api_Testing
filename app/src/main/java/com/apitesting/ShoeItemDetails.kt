@@ -25,11 +25,10 @@ class ShoeItemDetails : AppCompatActivity() {
 
         //val shoeImageURL = ShoeImage.getImageURLs(shoeId)
 
-        binding.productTitleTextView.text = " $shoeName"
-        binding.productPriceTextView.text = " $shoePrice"
-        binding.productNameBelowImage.text = " $shoeName"
-        binding.productPriceTextView.text = " $shoePrice"
-        binding.productDescriptionTextView.text = " $shoeDescription"
+        binding.productTitleTextView.text = "$shoeName"
+        binding.productPriceTextView.text = "$shoePrice"
+        binding.productNameBelowImage.text = "$shoeName"
+        binding.productDescriptionTextView.text = "$shoeDescription"
         // Display other shoe details as needed
 
         Glide.with(this)
@@ -39,4 +38,3 @@ class ShoeItemDetails : AppCompatActivity() {
             .into(binding.productImageView)
     }
 }
-
