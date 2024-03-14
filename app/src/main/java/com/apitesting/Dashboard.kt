@@ -2,6 +2,7 @@ package com.apitesting
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -9,11 +10,32 @@ import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apitesting.databinding.ActivityDashboardBinding
+import com.bumptech.glide.Glide
 import retrofit2.Response
+import java.util.Timer
+import java.util.TimerTask
 
 class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
+    private lateinit var imageView: ImageView
+    private val imageUrls = listOf(
+        "https://www.sneakersphere.online/images/12.png",
+        "https://www.sneakersphere.online/images/1.png",
+        "https://www.sneakersphere.online/images/11.png",
+        "https://www.sneakersphere.online/images/2.png",
+        "https://www.sneakersphere.online/images/10.png",
+        "https://www.sneakersphere.online/images/3.png",
+        "https://www.sneakersphere.online/images/9.png",
+        "https://www.sneakersphere.online/images/4.png",
+        "https://www.sneakersphere.online/images/8.png",
+        "https://www.sneakersphere.online/images/5.png",
+        "https://www.sneakersphere.online/images/7.png",
+        "https://www.sneakersphere.online/images/6.png"
+    )
+    private var currentPage = 0
+    private lateinit var timer: Timer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +43,12 @@ class Dashboard : AppCompatActivity() {
         //super.onCreate(savedInstanceState)
         //binding = ActivityDashboardBinding.inflate(layoutInflater)
         //setContentView(binding.root)
+
+        //Image
+        imageView = findViewById(R.id.imageView)
+
+        // Start automatic image slider
+        startImageSlider()
 
         val recyclerView: RecyclerView = findViewById(R.id.productRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -51,5 +79,23 @@ class Dashboard : AppCompatActivity() {
                 adapter.setData(shoeList) // Update adapter data with the fetched list
             }
         })
+    }
+
+    private fun startImageSlider() {
+        timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    if (currentPage == imageUrls.size) {
+                        currentPage = 0
+                    }
+                    // Load image using Glide or Picasso
+                    Glide.with(this@Dashboard)
+                        .load(imageUrls[currentPage])
+                        .into(imageView)
+                    currentPage++
+                }
+            }
+        }, 0, 3000) // Change slide duration as needed
     }
 }

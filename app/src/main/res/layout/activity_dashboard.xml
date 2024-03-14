@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Dashboard">
 
     <!-- Your existing content goes here -->
     <ScrollView
@@ -67,15 +67,15 @@
                     android:contentDescription="Search"
                     android:src="@drawable/baseline_search_24"
                     tools:ignore="TouchTargetSizeCheck" />
+
             </RelativeLayout>
 
-            <!-- Your ViewPager for Carousel -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/headerLayout"
-                android:layout_marginTop="8dp"/>
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_image" />
 
             <!-- "Shop here" label -->
             <TextView
@@ -85,7 +85,7 @@
                 android:paddingTop="15dp"
                 android:layout_marginLeft="10dp"
                 android:paddingBottom="15dp"
-                android:text="Shop Here"
+                android:text="SHOP HERE"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
@@ -104,7 +104,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:layout_marginLeft="10dp"
-                android:text="Categories"
+                android:text="CATEGORIES"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>

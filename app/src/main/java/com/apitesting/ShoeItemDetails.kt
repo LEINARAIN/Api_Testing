@@ -2,6 +2,7 @@ package com.apitesting
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide
 class ShoeItemDetails : AppCompatActivity() {
 
     private var selectedSizeButton: Button? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

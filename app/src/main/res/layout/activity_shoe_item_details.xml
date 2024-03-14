@@ -45,25 +45,12 @@
 
             <!-- Search Button -->
             <ImageButton
-                android:id="@+id/searchButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@id/cartButton"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="Search"
-                android:onClick="openSearch"
-                android:src="@drawable/baseline_search_24"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <ImageButton
                 android:id="@+id/cartButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="Add to cart"
-                android:onClick="openCart"
+                android:background="@android:color/transparent"
+                android:contentDescription="Add to Cart"
                 android:src="@drawable/baseline_shopping_cart_24"
                 tools:ignore="TouchTargetSizeCheck" />
 
