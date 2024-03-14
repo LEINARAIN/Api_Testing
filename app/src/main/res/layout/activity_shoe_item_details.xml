@@ -41,7 +41,7 @@
                 android:text="Product Name"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <!-- Search Button -->
             <ImageButton
@@ -136,16 +136,16 @@
             android:orientation="vertical">
 
             <!-- Add to Cart Button -->
-            <Button
-                android:id="@+id/addToCartButton"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/transparent_button_background"
-                android:foreground="@drawable/transparent_button_foreground"
-                android:text="Add to Cart"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:onClick="addToCart" />
+                <Button
+                    android:id="@+id/addToCartButton"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:foreground="@drawable/transparent_button_foreground"
+                    android:text="Add to Cart"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:onClick="addToCart" />
 
             <!-- Cart Items TextView -->
             <TextView
@@ -158,35 +158,6 @@
                 android:layout_marginEnd="16dp"
                 android:text=""
                 android:textSize="16sp" />
-
-            <RelativeLayout
-                android:id="@+id/relatedProductsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/buttonsLayout"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="30dp"
-                android:padding="16dp"
-                android:background="@drawable/rounded_background">
-
-                <TextView
-                    android:id="@+id/relatedProductsTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="You might also like"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-
-                    android:layout_marginBottom="16dp"/>
-                <!-- Inside the "You might also like" section -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/otherProductsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/relatedProductsTitleTextView"
-                    android:layout_marginTop="16dp"/>
-
-            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

@@ -85,7 +85,7 @@
                 android:paddingTop="15dp"
                 android:layout_marginLeft="10dp"
                 android:paddingBottom="15dp"
-                android:text="Shop here"
+                android:text="Shop Here"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>
