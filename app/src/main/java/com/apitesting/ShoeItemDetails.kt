@@ -17,7 +17,7 @@ class ShoeItemDetails : AppCompatActivity() {
 
     private var selectedSizeButton: Button? = null
 
-
+    //from dashboard to here
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityShoeItemDetailsBinding.inflate(layoutInflater)

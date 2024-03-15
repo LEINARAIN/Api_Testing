@@ -2,6 +2,7 @@ package com.apitesting
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -18,6 +19,8 @@ import java.util.TimerTask
 class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
+
+    //Image Slides
     private lateinit var imageView: ImageView
     private val imageUrls = listOf(
         "https://www.sneakersphere.online/images/12.png",
@@ -36,7 +39,7 @@ class Dashboard : AppCompatActivity() {
     private var currentPage = 0
     private lateinit var timer: Timer
 
-
+    //Shoes RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -50,6 +53,7 @@ class Dashboard : AppCompatActivity() {
         // Start automatic image slider
         startImageSlider()
 
+        //Calling/fetching ShoeItems
         val recyclerView: RecyclerView = findViewById(R.id.productRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
@@ -64,6 +68,7 @@ class Dashboard : AppCompatActivity() {
         // Initialize adapter with empty list
         recyclerView.adapter = adapter
 
+        //Calling Retrofit
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
 
         val responseLiveData: LiveData<Response<ShoeItem>> =
@@ -79,8 +84,15 @@ class Dashboard : AppCompatActivity() {
                 adapter.setData(shoeList) // Update adapter data with the fetched list
             }
         })
-    }
 
+        // Search button click listener
+        val searchButton: ImageButton = findViewById(R.id.searchButton)
+        searchButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    //Image Slides
     private fun startImageSlider() {
         timer = Timer()
         timer.scheduleAtFixedRate(object : TimerTask() {
