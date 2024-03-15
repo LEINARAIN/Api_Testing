@@ -39,7 +39,7 @@ class SearchActivity : AppCompatActivity() {
         //val recyclerView: RecyclerView = findViewById(R.id.recyclerViewResults)
 
         val searchAdapter = SearchAdapter(emptyList()) { shoe, imageUrl ->
-            val intent = Intent(this, SearchAdapter::class.java)
+            val intent = Intent(this, ShoeItemDetails::class.java)
             intent.putExtra("SHOE_NAME", shoe.name)
             intent.putExtra("SHOE_PRICE", shoe.price)
             intent.putExtra("SHOE_DESCRIPTION", shoe.description)
