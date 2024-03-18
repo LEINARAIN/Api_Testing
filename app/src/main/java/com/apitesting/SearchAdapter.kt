@@ -25,7 +25,7 @@ class SearchAdapter(
             7 to "https://www.sneakersphere.online/images/7.png",
             8 to "https://www.sneakersphere.online/images/8.png",
             9 to "https://www.sneakersphere.online/images/9.png",
-            10 to "https://www.sneakersphere.online/images102.png",
+            10 to "https://www.sneakersphere.online/images/10.png",
             11 to "https://www.sneakersphere.online/images/11.png",
             12 to "https://www.sneakersphere.online/images/12.png"
 

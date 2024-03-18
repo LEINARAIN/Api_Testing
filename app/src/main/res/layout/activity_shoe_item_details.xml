@@ -95,7 +95,7 @@
             android:layout_below="@id/productPriceTextView"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:text="(U.S. SIZING)"
+            android:text="(U.S. MEN SIZING)"
             android:textSize="18sp"/>
 
         <!-- Sizes GridLayout -->
