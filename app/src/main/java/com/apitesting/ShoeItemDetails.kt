@@ -53,7 +53,7 @@ class ShoeItemDetails : AppCompatActivity() {
 
         // Set up size buttons
         val sizesGridLayout: GridLayout = findViewById(R.id.sizesGridLayout)
-        for (size in 41..48) {
+        for (size in 6..10) {
             val sizeButton = Button(this)
             sizeButton.text = size.toString()
             sizeButton.setBackgroundColor(Color.TRANSPARENT)

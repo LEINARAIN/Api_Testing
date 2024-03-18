@@ -24,15 +24,15 @@ class MainActivity : AppCompatActivity() {
         //val retrofitService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
 
         //val responseLiveData: LiveData<Response<ShoeItem>> =
-               // liveData {
-                  //  val response = retrofitService.getShoeItem()
-                   //// emit(response)
+          //     liveData {
+            //       val response = retrofitService.getShoeItem()
+              //     emit(response)
 
-               // }
+               }
 
 
-       // responseLiveData.observe(this, Observer { response ->
-         //   val shoeItem = response.body()
+        //responseLiveData.observe(this, Observer { response ->
+         //val shoeItem = response.body()
            // shoeItem?.let {
              //   val shoeList = it.shoes
                // for (shoeItem in shoeList) {
@@ -46,13 +46,13 @@ class MainActivity : AppCompatActivity() {
                     //binding.titleTextView.append(shoePrice)
                 //}
             //}
-        //})
+         //})
 
         //val url: String = "https://sneakersphere.online/frontendimg/img/jordan1.png"
         //val imageView : ImageView = findViewById (R.id.imageView)
         //Glide.with(this).load(url).into(imageView)
 
-    }
+    //}
 }
 
 

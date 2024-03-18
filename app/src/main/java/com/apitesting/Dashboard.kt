@@ -19,7 +19,6 @@ import java.util.TimerTask
 class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
-
     //Image Slides
     private lateinit var imageView: ImageView
     private val imageUrls = listOf(
@@ -53,7 +52,6 @@ class Dashboard : AppCompatActivity() {
         // Start automatic image slider
         startImageSlider()
 
-        //Calling/fetching ShoeItems
         val recyclerView: RecyclerView = findViewById(R.id.productRecyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
@@ -68,7 +66,6 @@ class Dashboard : AppCompatActivity() {
         // Initialize adapter with empty list
         recyclerView.adapter = adapter
 
-        //Calling Retrofit
         val retrofitService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
 
         val responseLiveData: LiveData<Response<ShoeItem>> =
@@ -92,7 +89,7 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    //Image Slides
+
     private fun startImageSlider() {
         timer = Timer()
         timer.scheduleAtFixedRate(object : TimerTask() {

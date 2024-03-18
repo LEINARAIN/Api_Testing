@@ -1,5 +1,3 @@
-// SearchActivity.kt
-
 package com.apitesting
 
 import android.content.Intent
@@ -25,7 +23,6 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchAdapter: SearchAdapter
 
     private var shoeList: MutableList<Shoe> = mutableListOf()
-    //private val shoeService: ShoeService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +33,8 @@ class SearchActivity : AppCompatActivity() {
         recyclerViewResults = findViewById(R.id.recyclerViewResults)
         searchBackButton = findViewById(R.id.searchBackButton)
 
-        //val recyclerView: RecyclerView = findViewById(R.id.recyclerViewResults)
-
-        val searchAdapter = SearchAdapter(emptyList()) { shoe, imageUrl ->
+        // Initialize adapter
+        searchAdapter = SearchAdapter(emptyList()) { shoe, imageUrl ->
             val intent = Intent(this, ShoeItemDetails::class.java)
             intent.putExtra("SHOE_NAME", shoe.name)
             intent.putExtra("SHOE_PRICE", shoe.price)
@@ -47,14 +43,7 @@ class SearchActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //recyclerView.adapter = searchAdapter
-
-        //back button
-        searchBackButton.setOnClickListener {
-            onBackPressed()
-        }
-
-        // Initialize adapter with empty list
+        // Set up RecyclerView
         recyclerViewResults.layoutManager = LinearLayoutManager(this)
         recyclerViewResults.adapter = searchAdapter
 
@@ -89,6 +78,11 @@ class SearchActivity : AppCompatActivity() {
                 return@setOnKeyListener true
             }
             return@setOnKeyListener false
+        }
+
+        //back button
+        searchBackButton.setOnClickListener {
+            onBackPressed()
         }
     }
 }

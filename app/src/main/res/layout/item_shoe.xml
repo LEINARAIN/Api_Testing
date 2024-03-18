@@ -6,14 +6,6 @@
     android:padding="8dp"
     android:background="@drawable/rounded_background">
 
-    <ImageView
-        android:id="@+id/searchProductImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_image"
-        android:background="@drawable/rounded_background"/>
-
     <TextView
         android:id="@+id/searchProductNameTextView"
         android:layout_width="match_parent"
@@ -22,10 +14,5 @@
         android:textStyle="bold"
         android:layout_marginTop="8dp"/>
 
-    <TextView
-        android:id="@+id/searchProductPriceTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"/>
 
 </LinearLayout>

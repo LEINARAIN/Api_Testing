@@ -87,6 +87,17 @@
             android:textStyle="bold"
             android:textSize="18sp"/>
 
+        <!-- Size TextView -->
+        <TextView
+            android:id="@+id/sizeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productPriceTextView"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:text="(U.S. SIZING)"
+            android:textSize="18sp"/>
+
         <!-- Sizes GridLayout -->
         <GridLayout
             android:id="@+id/sizesGridLayout"
@@ -97,7 +108,7 @@
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
             android:useDefaultMargins="true"
-            android:layout_below="@id/productPriceTextView"
+            android:layout_below="@id/sizeTextView"
             android:layout_marginTop="16dp"/>
 
         <!-- Product description -->
@@ -123,16 +134,16 @@
             android:orientation="vertical">
 
             <!-- Add to Cart Button -->
-                <Button
-                    android:id="@+id/addToCartButton"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:foreground="@drawable/transparent_button_foreground"
-                    android:text="Add to Cart"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:onClick="addToCart" />
+            <Button
+                android:id="@+id/addToCartButton"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:foreground="@drawable/transparent_button_foreground"
+                android:text="Add to Cart"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:onClick="addToCart" />
 
             <!-- Cart Items TextView -->
             <TextView
