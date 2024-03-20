@@ -1,24 +1,59 @@
 package com.apitesting
 
-import com.google.gson.annotations.SerializedName
+
+import android.os.Parcel
+import android.os.Parcelable
+
 
 data class ShoeItem(
-    @SerializedName("shoes")
     val shoes: List<Shoe>
 )
+
+
 data class Shoe(
-    @SerializedName("id")
-    val id:Int,
-    @SerializedName("name")
+    val id: Int,
     val name: String,
-    @SerializedName("description")
     val description: String,
-    @SerializedName("image")
     val image: String,
-    @SerializedName("price")
     val price: String,
-    @SerializedName("created_at")
     val created_at: String,
-    @SerializedName("updated_at")
     val updated_at: String
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
+    )
+
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(name)
+        parcel.writeString(description)
+        parcel.writeString(image)
+        parcel.writeString(price)
+        parcel.writeString(created_at)
+        parcel.writeString(updated_at)
+    }
+
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+
+    companion object CREATOR : Parcelable.Creator<Shoe> {
+        override fun createFromParcel(parcel: Parcel): Shoe {
+            return Shoe(parcel)
+        }
+
+
+        override fun newArray(size: Int): Array<Shoe?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

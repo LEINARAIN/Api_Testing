@@ -70,5 +70,10 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("androidx.recyclerview:recyclerview:1.2.0")
+    //kapt ("com.github.bumptech.glide:compiler:4.12.0")
 
+    // Room dependencies
+    implementation ("androidx.room:room-runtime:2.4.1")
+    //kapt ("androidx.room:room-compiler:2.4.1") // Use kapt for Room annotation processing
+    implementation ("androidx.room:room-ktx:2.4.1")
 }

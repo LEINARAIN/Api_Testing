@@ -88,6 +88,13 @@ class Dashboard : AppCompatActivity() {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
+
+        // Cart button click listener
+        val cartButton:  ImageButton = findViewById(R.id.cartButton)
+        cartButton.setOnClickListener{
+            val intent = Intent (this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startImageSlider() {
@@ -107,4 +114,11 @@ class Dashboard : AppCompatActivity() {
             }
         }, 0, 3000) // Change slide duration as needed
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Cancel the timer task to prevent memory leaks
+        timer.cancel()
+    }
+
 }

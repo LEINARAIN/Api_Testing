@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_toStartOf="@id/cartButton"
+                android:layout_toStartOf="@id/detailCartButton"
                 android:layout_toEndOf="@id/backButton"
                 android:text="Product Name"
                 android:textStyle="bold"
@@ -45,7 +45,7 @@
 
             <!-- Search Button -->
             <ImageButton
-                android:id="@+id/cartButton"
+                android:id="@+id/detailCartButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignParentEnd="true"

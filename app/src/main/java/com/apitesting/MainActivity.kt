@@ -1,7 +1,10 @@
 package com.apitesting
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -18,41 +21,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        //val retrofitService = RetrofitInstance.getRetrofitInstance().create(ShoeService::class.java)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
-        //val responseLiveData: LiveData<Response<ShoeItem>> =
-          //     liveData {
-            //       val response = retrofitService.getShoeItem()
-              //     emit(response)
+        supportActionBar?.hide()
 
-               }
-
-
-        //responseLiveData.observe(this, Observer { response ->
-         //val shoeItem = response.body()
-           // shoeItem?.let {
-             //   val shoeList = it.shoes
-               // for (shoeItem in shoeList) {
-                 //   val shoeId = "Shoe Id: ${shoeItem.id} \n"
-                   // binding.titleTextView.append(shoeId)
-                    //val shoeName = "Shoe Name: ${shoeItem.name} \n"
-                    //binding.titleTextView.append(shoeName)
-                    //val shoeDescription = "Shoe Description: ${shoeItem.description} \n"
-                    //binding.titleTextView.append(shoeDescription)
-                    //val shoePrice = "Shoe Price: ${shoeItem.price} \n"
-                    //binding.titleTextView.append(shoePrice)
-                //}
-            //}
-         //})
-
-        //val url: String = "https://sneakersphere.online/frontendimg/img/jordan1.png"
-        //val imageView : ImageView = findViewById (R.id.imageView)
-        //Glide.with(this).load(url).into(imageView)
-
-    //}
+        Handler().postDelayed({
+            val intent = Intent(this@MainActivity, Dashboard::class.java)
+            startActivity(intent)
+            finish()
+        },3000)
+    }
 }
 
 

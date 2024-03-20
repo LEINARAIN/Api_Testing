@@ -1,23 +1,22 @@
 package com.apitesting
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.apitesting.databinding.ActivityShoeItemDetailsBinding
 import com.bumptech.glide.Glide
 
-
 class ShoeItemDetails : AppCompatActivity() {
 
     private var selectedSizeButton: Button? = null
+    private val cartItems = mutableListOf<CartItem>()
 
-    //from dashboard to here
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityShoeItemDetailsBinding.inflate(layoutInflater)
@@ -28,15 +27,13 @@ class ShoeItemDetails : AppCompatActivity() {
         val shoePrice = intent.getStringExtra("SHOE_PRICE")
         val shoeDescription = intent.getStringExtra("SHOE_DESCRIPTION")
         val shoeId = intent.getIntExtra("SHOE_ID", -1)
-
         val shoeImageUrl = intent.getStringExtra("SHOE_IMAGE_URL")
 
         // Display other shoe details as needed
-        binding.productTitleTextView.text = "$shoeName"
+        binding.productTitleTextView.text = shoeName
         binding.productPriceTextView.text = "PHP $shoePrice"
-        binding.productNameBelowImage.text = "$shoeName"
-        binding.productDescriptionTextView.text = "$shoeDescription"
-
+        binding.productNameBelowImage.text = shoeName
+        binding.productDescriptionTextView.text = shoeDescription
 
         //Image fetching
         Glide.with(this)
@@ -45,9 +42,8 @@ class ShoeItemDetails : AppCompatActivity() {
             .error(R.drawable.baseline_error_outline_24)
             .into(binding.productImageView)
 
-        //Back button
-        val backButton: View = findViewById(R.id.backButton)
-        backButton.setOnClickListener {
+        // Back button
+        binding.backButton.setOnClickListener {
             finish()
         }
 
@@ -66,6 +62,13 @@ class ShoeItemDetails : AppCompatActivity() {
             }
             sizesGridLayout.addView(sizeButton)
         }
+
+        // Cart button click listener
+        val cartButton: ImageButton = findViewById(R.id.detailCartButton)
+        cartButton.setOnClickListener{
+            val intent = Intent (this, CartActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun handleSizeSelection(selectedButton: Button) {
@@ -80,5 +83,21 @@ class ShoeItemDetails : AppCompatActivity() {
     private fun selectSize(selectedButton: Button) {
         val selectedSize = selectedButton.text.toString()
         Toast.makeText(this, "Selected size: $selectedSize", Toast.LENGTH_SHORT).show()
+    }
+
+    fun addToCart(view: View) {
+        val shoeId = intent.getIntExtra("SHOE_ID", -1)
+        val shoeName = intent.getStringExtra("SHOE_NAME")
+        val shoePrice = intent.getStringExtra("SHOE_PRICE")
+        val shoeImageUrl = intent.getStringExtra("SHOE_IMAGE_URL")
+        val selectedSize = selectedSizeButton?.text.toString() // Get the selected size
+
+        val cartItem = CartItem(shoeId, Shoe(shoeId, shoeName.orEmpty(), "", shoeImageUrl.orEmpty(), shoePrice.orEmpty(), "", ""), 1, selectedSize)
+        cartItems.add(cartItem)
+
+        Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show()
+
+        // Clear the selected size button
+        selectedSizeButton?.isSelected = false
     }
 }
